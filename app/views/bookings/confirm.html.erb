@@ -1,0 +1,30 @@
+<div class="container booking-page">
+  <div class="room-row">
+    <div class="booking-create-grid adjust">
+      <h4 class="booking-create-check">予約内容確認</h4>
+      <h5 class="booking-create-charge">¥ <%= @room.room_charge %>/Day</h5>
+      <div class="booking-create-data">
+        <label>Check-in</label>
+          <p class="form-control"><%= @booking.check_in.strftime('%Y年%-m月%-d日') %></p>
+        <label>Check-out</label>
+          <p class="form-control"><%= @booking.check_out.strftime('%Y年%-m月%-d日') %></p>
+        <label>人数</label>
+          <p class="form-control"><%= @booking.num_guests %>/名</p>
+        <label>合計料金</label>
+          <p class="form-control">¥ <%= @booking.ttl_charge %></p>
+        <p>上記内容でよろしければ「予約」を押してください</p>
+        <div class="submit">
+          <%= form_with url: "/bookings/reconfirm", method: :post, local: true do |f| %>
+            <%= f.hidden_field :check_in %>
+            <%= f.hidden_field :check_out %>
+            <%= f.hidden_field :num_guests %>
+            <%= f.hidden_field :ttl_charge %>
+            <%= hidden_field_tag :room_id, @room.id %>
+            <%= f.submit "予約", class: 'btn btn-no3' %>
+            <%= f.submit "ルーム詳細へ戻る", name: :back, class: 'btn btn-no3' %>
+          <% end %>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>

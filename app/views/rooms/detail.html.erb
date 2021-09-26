@@ -1,0 +1,42 @@
+<div class="room-container">
+  <div class="room-row devide">
+      <div class="content-left">
+        <img src="<%= "/room_images/#{@room.id}.jpg" %>" class="room-detail-image">
+        <div class="room-detail">
+          <div class="account-img">
+          <% if @current_user %>
+            <% if @current_user.image_name == nil %>
+              <%= image_tag "/user_images/default_user.jpeg", id:"acdn-button", class:"account-img" %>
+            <% else %>
+              <%= image_tag "/user_images/#{@current_user.id}.jpg", id:"acdn-button", class:"account-img" %>
+            <% end %>
+          <% end %>
+          </div>
+          <div class="room-detail-profile">
+            <p class="room-detail-title"><%= @room.name %></p>
+            <p class="room-detail-address"><%= @room.address %></p>
+          </div>
+        </div>
+        <p class="room-detail-comment"><%= @room.room_comment %></p>
+      </div>
+      <div class="content-right">
+        <div class="room-booking-grid">
+          <h5 class="room-detail-charge">¥ <%= @room.room_charge %>/Day</h5>
+          <div class="room-booking-data">
+            <%= form_with url: "/bookings/confirm", method: :post, local: true do |b| %>
+              <label>Check-in</label>
+                <%= b.date_field :check_in, class: 'form-control', placeholder: "日程を追加" %>
+              <label>Check-out</label>
+                <%= b.date_field :check_out, class: 'form-control', placeholder: "日程を追加" %>
+              <label>人数</label>
+                <%= b.text_field :num_guests, class: 'form-control', placeholder: "ご利用人数を入力" %>
+              <div class="submit">
+                <%= b.submit "確認", class: 'btn btn-no3' %>
+              </div>
+                <%= hidden_field_tag :room_id, @room.id %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

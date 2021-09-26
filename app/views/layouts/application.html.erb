@@ -8,9 +8,70 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
+  <header class="header">
+    <div class="header-logo">
+      <a href="/reservations/home">
+        <img alt="サイトロゴ" src="https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png">
+      </a>
+      <div class="header-search">
+        <%= search_form_for @search, url: rooms_search_path do |f| %>
+          <%= f.search_field :address_cont, class: "header-form-control", placeholder: "エリア" %>
+          <i class="area-icon"></i>
+          <%= f.search_field :address_or_name_cont, class: "header-form-control", placeholder: "キーワード" %>
+          <i class="keyword-icon"></i>
+          <%= f.submit "探す", class: "hidden-btn" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="header-nav">
+      <div class="nav-right-btn">
+        <% @current_user = User.find_by(id: session[:user_id]) %>
+        <% if @current_user %>
+          <div class="nav-btn">
+            <li><%= link_to(@current_user.name, "/users/#{@current_user.id}") %></li>
+            <% if @current_user.image_name == nil %>
+              <li><%= image_tag "/user_images/default_user.jpeg", id:"acdn-button", class:"account-img" %></li>
+            <% else %>
+              <li><%= image_tag "/user_images/#{@current_user.id}.jpg", id:"acdn-button", class:"account-img" %></li>
+            <% end %>
+          </div>
+        <% else %>
+          <a href="/login" class="btn btn-no1">ログイン</a>
+          <a href="/users/new" class="btn btn-no2">新規登録</a>
+        <% end %>
+      </div>
+    </div>
+  </header>
+  
+  <% if @current_user %>
+    <ul class="header-nav-menu" id="acdn-menu">
+      <li class="devide-line">|</li>
+      <li class="nav-menu"><%= link_to("ルーム登録", "/rooms/new") %></li>
+      <li class="devide-line">|</li>
+      <li class="nav-menu"><%= link_to("予約済みルーム一覧", "/bookings/index") %></li>
+      <li class="devide-line">|</li>
+      <li class="nav-menu"><%= link_to("登録済みルーム一覧", "/rooms/index") %></li>
+      <li class="devide-line">|</li>
+      <li class="nav-menu"><%= link_to("設定", "/users/#{@current_user.id}") %></li>
+      <li class="devide-line">|</li>
+      <li class="nav-menu"><%= link_to("ログアウト", "/logout", method: :post) %></li>
+      <li class="devide-line">|</li>
+    </ul>
+  <% end %>
+
+  <%if  flash[:notice] %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
 
   <body>
     <%= yield %>
   </body>
+  
+  <footer class="footer">
+    <p>© 2020 POTEPAN.INC.</p>
+  </footer>
 </html>

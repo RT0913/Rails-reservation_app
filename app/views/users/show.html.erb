@@ -1,0 +1,36 @@
+<div class="container-profile">
+  <div class="user-row">
+    <ul>
+      <li class="selected-line">
+        <%= link_to("アカウント", "/users/#{@user.id}") %>
+      </li>
+      <li>
+        <%= link_to("プロフィール", "/users/#{@user.id}/edit") %>
+      </li>
+    </ul>
+  </div>
+  <div class="user-account-view">
+    <div class="view-box">
+      <div class="user-content">
+        <h3>アカウント情報</h3>
+      </div>
+      <div class="user-content">
+        <h5>ユーザー名</h5>
+        <p><%= @user.name %></p>
+      </div>
+      <div class="user-content">
+        <h5>メールアドレス</h5>
+        <p><%= @user.mail %></p>
+      </div>
+      <div class="user-content">
+        <h5>パスワード</h5>
+        <p>********</p>
+      </div>
+      <div class="user-content">
+        <% if @user.id == @current_user.id %>
+          <p class="btn btn-no4"><%= link_to("編集", "/users/#{@user.id}/edit") %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

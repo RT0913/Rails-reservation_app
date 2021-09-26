@@ -8,8 +8,13 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 
-//=require("")
+//=require jquery
+//=require jquery.turbolinks
+//=require("menu")
 //=require("@rails/ujs").start()
+//=require("@rails/activestrage").start()
+//=require jquery_ujs
+//=require_tree .
 
 Rails.start()
 Turbolinks.start()
