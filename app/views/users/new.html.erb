@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="view-box">
+    <div class="user-content">
+      <h3>ユーザー登録</h3>
+    </div>
+    <%= form_with url: "/users/create", method: :post, local: true do |user| %>
+    <div class="user-content">
+      <div class="form-row">
+        <label class="content-label must">ユーザー名</label>
+        <div class="content-data">
+          <%= user.text_field :name, value: @name, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="user-content">
+      <div class="form-row">
+        <label class="content-label must">メールアドレス</label>
+        <div class="content-data">
+          <%= user.email_field :mail, value: @mail, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="user-content">
+      <div class="form-row">
+        <label class="content-label must">パスワード</label>
+        <div class="content-data">
+          <%= user.password_field :password, value: @user.password, class: "form-control", placeholder: "//8〜20字以内//" %>
+        </div>
+      </div>   
+    </div>
+    <div class="submit">
+      <%= user.submit "アカウント作成", class: 'btn btn-no5' %>
+    </div>
+    <% end %>
+    <div class="submit">
+      <%= link_to("アカウントお持ちの方", "/login", class: 'btn btn-no4') %></p>
+    </div>
+  </div>
+</div>

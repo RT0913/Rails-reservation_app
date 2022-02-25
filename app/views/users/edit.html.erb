@@ -1,0 +1,59 @@
+<div class="container-profile">
+  <div class="user-row">
+    <ul>
+      <li>
+        <%= link_to("アカウント", "/users/#{@user.id}") %>
+      </li>
+      <li class="selected-line">
+        <%= link_to("プロフィール", "/users/#{@user.id}/edit") %>
+      </li>
+    </ul>
+  </div>
+  <%= form_with url: "/users/#{@user.id}/update" do |user| %>
+  <div class="user-account-view">
+    <div class="view-box">
+      <div class="user-content">
+        <div class="form-row">
+         <h3>プロフィール</h3>
+        </div>
+      </div>
+      <div class="user-content">
+        <div class="form-row">
+          <div class="icon-box">
+            <%= image_tag "/user_images/#{@user.id}.jpg", class:"account-img" %>
+          </div>
+        </div>
+      </div>
+      <div class="user-content">
+        <div class="form-row">
+          <label class="content-label must">アイコン画像</label>
+          <div class="content-data">
+            <%= user.file_field :user_image %>
+          </div>
+        </div>
+      </div>
+      <div class="user-content">
+        <div class="form-row">
+          <label class="content-label must">ユーザー名</label>
+          <div class="content-data">
+            <%= user.text_field :name, value: @user.name, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="user-content">
+        <div class="form-row">
+          <label class="content-label must">自己紹介</label>
+          <div class="content-data">
+            <%= user.text_area :comment, value: @user.comment, class: "form-control",  placeholder: "自己紹介を入力" %>
+          </div>
+        </div>
+      </div>
+      <div class="submit">
+        <%= user.submit "更新", class: 'btn btn-no4' %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+
+

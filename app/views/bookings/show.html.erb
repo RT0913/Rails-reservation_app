@@ -1,0 +1,40 @@
+<div class="container-booking-page">
+  <div class="room-row">
+    <div class="reconfirm-view">
+      <div class="booking-reconfirm-grid">
+        <div class="booking-reconfirm-data">
+          <div class="form-row">
+            <label class="content-label">予約の部屋</label>
+            <div class="content-data">
+              <%= @booking.room_name %>
+            </div>
+          </div>
+        </div>
+        <div class="booking-reconfirm-data">
+          <div class="form-row">
+            <label class="content-label">Check-in</label>
+            <div class="content-data">
+              <%= @booking.check_in.strftime('%Y年%-m月%-d日') %>
+            </div>
+          </div>
+        </div>
+        <div class="booking-reconfirm-data">
+          <div class="form-row">
+            <label class="content-label">Check-out</label>
+            <div class="content-data">
+              <%= @booking.check_out.strftime('%Y年%-m月%-d日') %>
+            </div>
+          </div>
+        </div>
+        <div class="booking-reconfirm-data">
+          <div class="form-row">
+            <label class="content-label">合計料金</label>
+            <div class="content-data">
+              ¥ <%= @booking.ttl_charge %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

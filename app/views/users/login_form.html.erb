@@ -1,0 +1,27 @@
+<% if @error_message %>
+  <div class="error_message">
+    <%= @error_message %>
+  </div>
+<% end %>
+
+<div class="container">
+  <div class="container-frame">
+    <div class="container-inner">
+      <h3 class="title">ログイン</h3>
+      <%= form_with url: "/login" do |user| %>
+        <div>
+          <%= user.email_field :mail, value: @mail, class: "form-control", placeholder: "メールアドレス" %>
+        </div>
+        <div>
+          <%= user.password_field :password, class: "form-control", placeholder: "パスワード" %>
+        </div>
+        <div class="submit">
+          <%= user.submit "ログイン", class: 'btn btn-no6' %>
+        </div>
+      <% end %>
+        <div class="submit">
+          <%= link_to("新規登録", "/users/new", class: 'btn btn-no7') %>
+        </div>
+    </div>
+  </div>
+</div>

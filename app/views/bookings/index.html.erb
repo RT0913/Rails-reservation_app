@@ -1,0 +1,29 @@
+<div class="room-container">
+  <h3 class="search-count">予約済みルーム一覧</h3>
+   <table>
+    <thead>
+      <tr>
+        <th scope="col">ルーム画像</th>
+        <th scope="col">ルーム名</th>
+        <th scope="col">ルーム紹介</th>
+        <th scope="col">合計料金</th>
+        <th scope="col">Check-in</th>
+        <th scope="col">Check-out</th>
+        <th scope="col">作成日</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= link_to image_tag("/room_images/#{booking.room_id}.jpg", class:"room-image"), "/rooms/#{booking.room_id}/detail" %></td>
+        <td class="room-title"><%= link_to(booking.room_name, "/rooms/#{booking.room_id}/detail") %></td>
+        <td><%= booking.room_comment %></td>
+        <td>¥ <%= booking.ttl_charge %></td>
+        <td><%= booking.check_in.strftime('%Y年%-m月%-d日') %></td>
+        <td><%= booking.check_out.strftime('%Y年%-m月%-d日') %></td>
+        <td><%= booking.created_at.to_s(:datetime_jp) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

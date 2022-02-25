@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="view-box">
+    <div class="user-content">
+      <h3>ルーム登録</h3>
+    </div>
+    <%= form_with url: "/rooms/create", method: :post, local: true do |room| %>
+    <div class="user-content">
+      <div class="form-row">
+        <label class="content-label">ルーム名</label>
+        <div class="content-data">
+          <%= room.text_field :name, value: @name, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="user-content">
+      <div class="form-row">
+        <label class="content-label">ルームの説明</label>
+        <div class="content-data">
+          <%= room.text_area :room_comment, value: @room_comment, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="user-content">
+      <div class="form-row">
+        <label class="content-label">1泊の料金</label>
+        <div class="content-data">
+          <%= room.text_field :room_charge, value: @room_charge, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="user-content">
+      <div class="form-row">
+        <label class="content-label">住所</label>
+        <div class="content-data">
+          <%= room.text_field :address, value: @address, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="user-content">
+      <div class="form-row">
+        <label class="content-label">ルーム画像</label>
+        <div class="content-data">
+          <%= room.file_field :room_image %>
+        </div>
+      </div>
+    </div>
+    <div class="submit">
+      <%= room.submit "登録", class: 'btn btn-no4' %>
+    </div>
+    <% end %>
+    </div>
+  </div>
+</div>
